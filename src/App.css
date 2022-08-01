@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+:root {
+  --color-dark-blue: #11214c;
+  --color-blue: #004bfc;
+  --color-white: #ffffff;
+  --color-light-grey: #efefef;
+  --color-black: #060d0d;
+  --color-grey-hover: #ececec;
+  --color-blue-hover: #1346b8;
+  --color-active: #a0e6ff;
+  --color-active-hover: #8ce2f7;
+  scrollbar-color: #656565 transparent; /*transparent*/
+  scrollbar-width: thin !important;
+  -moz-appearance: none !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar {
+  width: 3px;
+  -moz-appearance: none !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar-thumb {
+  background: #656565;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body, .App, #root {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Jost';
+}
+
+.content {
+  background-color: var(--color-dark-blue);
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 8fr;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

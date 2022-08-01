@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Aside from './components/Aside/Aside';
+import Img from './components/Img/Img';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  const { gallery, currentImg } = useSelector(({ gallery }) => {
+    return {
+      gallery: gallery.gallery,
+      currentImg: gallery.currentImg
+    }
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="content">
+        <aside>
+          <Aside gallery={gallery} currentImg={currentImg}/>
+        </aside>
+        <main>
+          <Img currentImg={currentImg}/>
+        </main>
+      </section>
     </div>
   );
 }

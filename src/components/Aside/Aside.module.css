@@ -1,0 +1,81 @@
+.container {
+    width: calc(100% - 20px);
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 70%;
+    background-color: var(--color-white);
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.gallery {
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.item {
+    height: 36px;
+    padding: 7px 7px 7px 15px;
+    border-bottom: 2px solid var(--color-light-grey);
+    color: var(--color-black);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.active {
+    background-color: var(--color-active);
+    border-bottom: none;
+}
+
+.active:hover {
+    background-color: var(--color-active-hover)!important;
+}
+
+@-moz-document url-prefix() {
+    .item{
+        line-height: 2;
+    }
+}
+
+.wrapper div:first-child, .gallery:empty ~ label{
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+label.item {
+    border-bottom: none;
+    display: block;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    margin-bottom: 0;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.item > input[type="file"] {
+    display: none;
+    width: 100%;
+}
+
+div.item:hover {
+    background-color: var(--color-grey-hover);
+}
+
+label.item:hover {
+    background-color: var(--color-blue-hover);
+}
+
+.item:first-child:hover {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
