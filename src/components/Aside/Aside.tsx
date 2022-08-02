@@ -1,25 +1,32 @@
-import React, { useEffect} from 'react'
+import React, { ChangeEvent, MouseEvent, useEffect, FC } from 'react'
 import style from './Aside.module.css'
 import { useDispatch } from 'react-redux'
-import { addImg } from '../../redux/actions/gallery'
-import { setCurrentImg } from '../../redux/actions/gallery'
-import { reverseObjectKeys, top5Values } from '../../helpers/helpers'
+import { addImg } from '../../redux/actions/gallery.ts'
+import { setCurrentImg } from '../../redux/actions/gallery.ts'
+import { reverseObjectKeys, top5Values } from '../../helpers/helpers.ts'
 
-const Aside = ({ gallery, currentImg }) => {
+type Props = {
+    gallery: object,
+    currentImg: string
+}
+
+const Aside: FC<Props> = ({ gallery, currentImg }) => {
     useEffect(() => {
-        sessionStorage.setItem("gallery", JSON.stringify(top5Values(gallery)))
+        top5Values(gallery) !== undefined && sessionStorage.setItem("gallery", JSON.stringify(top5Values(gallery)))
     })
-    const dispatch = useDispatch()
+    const dispatch: any = useDispatch()
 
-    const onUpload = (e) => {
+    const onUpload = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
-        let file = e.target.files[0]
-        let fileName = file.name
-        let reader = new FileReader()
+        const target = e.target as HTMLInputElement
+        const file: File = (target.files as FileList)[0]
+        const filesLength = (target.files as FileList).length
+        let fileName: string = file && file.name
+        let reader: any = new FileReader()
         reader.onload = function () {
             let arrayBuffer = new Uint8Array(reader.result)
-            const base64String = btoa(new Uint8Array(arrayBuffer).reduce((data, byte) => (data.push(String.fromCharCode(byte)), data), []).join(''))
-            if (e.target.files.length && sessionStorage.getItem(`${fileName}`) === null) {
+            const base64String = btoa(new Uint8Array(arrayBuffer).reduce((data: Array<string>, byte: any) => (data.push(String.fromCharCode(byte)), data), []).join(''))
+            if (filesLength && sessionStorage.getItem(`${fileName}`) === null) {
                  dispatch(addImg(fileName, `data:${file.type};base64,${base64String}`))
                  sessionStorage.setItem("gallery", JSON.stringify(top5Values(gallery)))
             }
@@ -28,7 +35,7 @@ const Aside = ({ gallery, currentImg }) => {
        
     }
 
-    const onSelect = fileName => (e) => {
+    const onSelect = (fileName: string) => (e: MouseEvent<HTMLDivElement>) => {
         e.preventDefault()
         dispatch(setCurrentImg(`${gallery[fileName]}`))
     }

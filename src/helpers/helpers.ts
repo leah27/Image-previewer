@@ -1,12 +1,12 @@
-export const reverseObjectKeys = (obj) => {
-    var arr = []
-    var newObj = []
+export const reverseObjectKeys = (obj: object) => {
+    let arr: Array<any> = []
+    let newObj: Array<any> = []
 
-    for (var key in obj) {
+    for (let key in obj) {
         if (obj === sessionStorage) {
-            var n = sessionStorage.length;
+            let n = sessionStorage.length;
             while (n--) {
-                var key = sessionStorage.key(n)
+                let key: string | any = sessionStorage.key(n)
                 if (/foo/.test(key)) {
                     sessionStorage.removeItem(key);
                 }
@@ -27,7 +27,7 @@ export const reverseObjectKeys = (obj) => {
 //     return Object.assign(result, current);
 //   }, {})
 
-export const top5Values = (obj) => {
+export const top5Values = (obj: object) => {
     if(obj && Object.values(obj).length > 0 && Object.getPrototypeOf(obj) === Object.prototype){
         let entries = Object.entries(obj);
         let top5= entries.slice(-5);

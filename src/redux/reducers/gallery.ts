@@ -1,9 +1,14 @@
-const initialState = {
-    gallery: sessionStorage.length === 0  ? {} : JSON.parse(sessionStorage.getItem('gallery')),
+type InitialStateType = {
+    gallery: object,
+    currentImg: string
+}
+
+const initialState: InitialStateType = {
+    gallery: sessionStorage.length === 0  ? {} : JSON.parse(`${sessionStorage.getItem('gallery')}`),
     currentImg: ''
 }
 
-const gallery = (state = initialState, action) => {
+const gallery = (state = initialState, action:any):InitialStateType => {
     switch (action.type) {
         case 'ADD_IMG': {
             return {

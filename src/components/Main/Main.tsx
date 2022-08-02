@@ -1,8 +1,12 @@
-import React from 'react'
-import style from './Img.module.css'
+import React, {FC} from 'react'
+import style from './Main.module.css'
 import select from '../../images/select.png'
 
-const Img = ({ currentImg }) => {
+type Props = {
+  currentImg: string
+}
+
+const Main: FC<Props> = ({ currentImg }) => {
   return (
     <div className={style.container}>
       <img className={style.img} alt="img" src={currentImg === '' ? select : currentImg} />
@@ -10,4 +14,4 @@ const Img = ({ currentImg }) => {
   )
 }
 
-export default Img
+export default Main
